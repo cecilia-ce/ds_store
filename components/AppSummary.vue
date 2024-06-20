@@ -41,6 +41,10 @@
     width: 20vw;
 }
 
+.summary h1 {
+    color: #00FF95;
+}
+
 .table-summary {
     width: 15vw;
     background-color: rgba(0, 0, 0, 0); 
@@ -48,14 +52,16 @@
 }
 
 .button {
-    background-color: #74447a; 
+    background-color: #bc01d4; 
     
 }
+
+/* bc01d4 */
 
 .total {
     font-size: 16px;
     font-weight: 900;
-    color: #74447a;  
+    color: #e100ff;     
 }
 
 p {
