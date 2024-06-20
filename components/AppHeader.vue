@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex justify-space-between align-center pa-10 border-b-thin title header">
         <div class="d-flex align-center ga-5">
-            <v-img width="55" src="/public/icon.svg" />
+            <v-img width="55" src="/public/images/logo.svg" />
             <h1>Deep Space Store</h1>
         </div>
         <p>Cancelar</p>
