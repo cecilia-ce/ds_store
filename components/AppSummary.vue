@@ -1,29 +1,29 @@
 <template>
     <v-card
-    variant="tonal"
-    class="summary d-flex flex-column ga-10"
+        variant="tonal"
+        class="summary d-flex flex-column ga-10"
     >
         <h1>Resumo</h1>
         <v-table 
-        density="compact"
-        class="table-summary"
+            density="compact"
+            class="table-summary"
         >
             <tbody>
                 <tr>
                     <td>Quantidade:</td>
-                    <td>1</td>
+                    <td>{{ quantity }}</td>
                 </tr>
                 <tr>
                     <td>Preço:</td>
-                    <td>R$ 58,50</td>
+                    <td>R$ {{ price }}</td>
                 </tr>
                 <tr>
                     <td>Frete:</td>
-                    <td>R$ 30,00</td>
+                    <td>R$ {{ freightCharges }}</td>
                 </tr>
                 <tr class="total">
                     <td>Total:</td>
-                    <td>R$ 88,50</td>
+                    <td>R$ {{ total }}</td>
                 </tr>
             </tbody>
         </v-table>
@@ -33,6 +33,26 @@
         </v-btn>
     </v-card>
 </template>
+
+<script setup>
+
+// const props = defineProps({
+//   quantity: number
+//   price: numbe
+//   freightCharges: number
+// });
+
+const props = defineProps({
+    quantity,
+    price,
+    freightCharges
+})
+
+const total = computed(() => {
+  return (props.price * props.quantity) + props.freightCharges
+});
+
+</script>
 
 <style scoped>
 .summary {
@@ -56,8 +76,6 @@
     
 }
 
-/* bc01d4 */
-
 .total {
     font-size: 16px;
     font-weight: 900;
@@ -73,6 +91,4 @@ span {
     font-weight: 900;
     color: #00FF95;
 }
-
-
 </style>
