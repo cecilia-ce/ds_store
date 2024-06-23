@@ -5,11 +5,11 @@
             class="image"
         />
         <div class="d-flex flex-column ga-3">
-            <h2>Telescópio Refletor Newtoniano 130mm Uranum Equatorial Astronômico Luneta</h2>
+            <h2>{{ name }}</h2>
             <div class="d-flex flex-row align-center justify-start ga-10">
-                <p>Marca: Uranum</p>
+                <p>Marca: {{ brand }}</p>
                 <v-rating
-                    v-model="rating"
+                    v-model="ratingValue"
                     active-color="orange-lighten-1"
                     color="orange-lighten-1"
                     size="small"
@@ -17,29 +17,17 @@
                     readonly
                 />
             </div>
-            <p class="price">R$ 2.450,99</p>
-            <v-divider />
-            <div>
-                <label for="quantity">Quantidade:</label>
-                <input 
-                    v-model="quantity"
-                    type="number" 
-                    id="quantity" 
-                    name="quantity" 
-                    min="1" 
-                    step="1" 
-                    required
-                    class="input"
-                />
-            </div>
+            <p class="price">R$ {{ price }}</p>          
         </div>
     </v-card>
 
 </template>
 
 <script setup>
-const rating = ref(4)
-const quantity = ref(1)
+
+const props = defineProps(['name', 'brand', 'rating', 'price'])
+
+const ratingValue = ref(props.rating)
 
 </script>
 
@@ -55,16 +43,6 @@ const quantity = ref(1)
 .image {
     width: 15vw;
     border-radius: 4px;
-}
-
-.input {
-    background-color: #0d3121;
-    margin-left: 5px;
-    width: 60px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    padding-left: 15px;
 }
 
 .price {
