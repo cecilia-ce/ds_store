@@ -6,8 +6,10 @@
             class="payment-card pa-10"
         >
             <v-radio-group 
-            v-for="button in radioButtons"
-            v-model="radios">
+                v-for="(button, index) in radioButtons" 
+                :key="button.id"
+                v-model="radios"
+            >
                 <v-radio color="#bc01d4" :value="button.value" :label="button.label"></v-radio>
             </v-radio-group>
 
@@ -168,14 +170,17 @@ const iconsPayment = [
 
 const radioButtons = [
     {
+        id: 1,
         value: 1,
         label: 'Pix'
     },
     {
+        id: 2,
         value: 2,
         label: 'Cartão de crédito'
     },
     {
+        id: 3,
         value: 3,
         label: 'Boleto'
     }
