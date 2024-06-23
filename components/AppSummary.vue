@@ -11,7 +11,18 @@
             <tbody>
                 <tr>
                     <td>Quantidade:</td>
-                    <td>{{ quantity }}</td>
+                    <td>
+                        <input 
+                            v-model="quantity"
+                            type="number" 
+                            id="quantity" 
+                            name="quantity" 
+                            min="1" 
+                            step="1" 
+                            required
+                            class="input"
+                        />
+                    </td>
                 </tr>
                 <tr>
                     <td>Preço:</td>
@@ -36,21 +47,14 @@
 
 <script setup>
 
-// const props = defineProps({
-//   quantity: number
-//   price: numbe
-//   freightCharges: number
-// });
+    const props = defineProps(['price', 'freightCharges'])
 
-const props = defineProps({
-    quantity,
-    price,
-    freightCharges
-})
+    const quantity = ref(1)
 
-const total = computed(() => {
-  return (props.price * props.quantity) + props.freightCharges
-});
+    const total = computed(() => {
+        let totalPrice = (props.price * quantity.value) + props.freightCharges
+        return totalPrice.toFixed(2)
+    });
 
 </script>
 
@@ -80,6 +84,15 @@ const total = computed(() => {
     font-size: 16px;
     font-weight: 900;
     color: #e100ff;     
+}
+
+.input {
+    background-color: #0d3121;
+    margin-left: 5px;
+    width: 50px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 15px;
 }
 
 p {
