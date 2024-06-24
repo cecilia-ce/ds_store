@@ -1,28 +1,21 @@
 <template>
     <v-card
-        variant="tonal"
+        variant="text"
         class="summary"
     >
-        <h1>Resumo</h1>
+        <h1>Detalhes da compra</h1>
         <v-table 
             density="compact"
             class="table-summary"
         >
             <tbody>
                 <tr>
+                    <td>Produto:</td>
+                    <td>nome do produto</td>
+                </tr>
+                <tr>
                     <td>Quantidade:</td>
-                    <td>
-                        <input 
-                            v-model="quantity"
-                            type="number" 
-                            id="quantity" 
-                            name="quantity" 
-                            min="1" 
-                            step="1" 
-                            required
-                            class="input"
-                        />
-                    </td>
+                    <td>2</td>
                 </tr>
                 <tr>
                     <td>Preço:</td>
@@ -38,29 +31,12 @@
                 </tr>
             </tbody>
         </v-table>
-        <p>Ao concluir sua compra você concorda com nossos <span>Termos de Serviço</span></p>
-        <v-btn 
-            class="button"
-            @click="$emit('submit')"
-        >
-            Finalizar compra
-        </v-btn>
     </v-card>
 </template>
 
 <script setup>
 
-    const props = defineProps(['price', 'freightCharges'])
-    
-    const emit = defineEmits(['updateTotalPrice'])
-
-    const quantity = ref(1)
-
-    const total = computed(() => {
-        let totalPrice = (props.price * quantity.value) + props.freightCharges
-        emit('updateTotalPrice', totalPrice)
-        return totalPrice.toFixed(2)
-    });
+const props = defineProps(['buyDetails'])
 
 </script>
 
@@ -69,19 +45,19 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    color: #1f855a;
     padding: 50px;
-    width: 20vw;
 }
 
 .summary h1 {
-    color: #00FF95;
+    font-size: 24px;
+    color: #1f855a;
 }
 
 .table-summary {
     width: 100%;
     background-color: rgba(0, 0, 0, 0); 
     border: none;
+    font-size: 18px;
 }
 
 .button {

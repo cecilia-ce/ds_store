@@ -28,17 +28,13 @@
                 </p>
                 <div class="d-flex align-center justify-space-between ga-5">
                     <v-text-field 
-                        label="CPF*"  
+                        label="CPF*"
+                        :rules="[requiredRule]"
                         placeholder="000.000.000-00"
                         density="compact"
                         type="text"
                         class="mt-3"
                     />
-                    <v-btn 
-                        class="button align-center"
-                    >
-                        Finalizar compra
-                    </v-btn>
                 </div>
             </v-card>
 
@@ -65,30 +61,36 @@
 
                 </div>
                 
-                <v-text-field label="Nome do titular*" />
-                <v-text-field label="Número do cartão*" />
+                <v-text-field 
+                    label="Nome do titular*" 
+                    :rules="[requiredRule]"
+                />
+                <v-text-field 
+                    label="Número do cartão*" 
+                    :rules="[requiredRule]"
+                />
                 <div class="d-flex flex-row ga-3">
-                    <v-text-field label="Data de vencimento*" />
-                    <v-text-field label="Código de segurança*" />
+                    <v-text-field 
+                        label="Data de vencimento*" 
+                        :rules="[requiredRule]"
+                    />
+                    <v-text-field 
+                        label="Código de segurança*" 
+                        :rules="[requiredRule]"
+                    />
                 </div>
                 
                 <div class="d-flex ga-5">
-                    <v-select>
-                    <!-- Adicionar as opções baseadas no valor total, ex: 12 x R$ 130,00 -->
-                    </v-select>
+                    <v-select 
+                        :items="installment"
+                        label="Parcelas" 
+                    />
 
                     <v-text-field 
                         label="CPF*"  
                         placeholder="000.000.000.00"
                         type="text"
                     />
-                </div>
-                <div class="d-flex justify-end">
-                    <v-btn 
-                        class="button"
-                    >
-                        Finalizar compra
-                    </v-btn>
                 </div>
             </v-card>
 
@@ -112,30 +114,24 @@
                         type="text"
                         class="mt-3"
                     />
-                    <v-btn 
-                        class="button"
-                    >
-                        Finalizar compra
-                    </v-btn>
                 </div>
             </v-card>
-
-
-
-
         </div>
-
-        
-        
     </div>
 </template>
 
 
 <script setup>
 
+const props = defineProps(['productValue'])
+
 const radios = ref(null);
 
 const valuePayment = ref(null);
+
+const installment =['1x','2x', '3x', '4x', '5x']
+
+const requiredRule = inputValue => !!inputValue || 'Este campo é obrigatório'
 
 watch(radios, (newVal) => {
     valuePayment.value = newVal;
@@ -185,17 +181,21 @@ const radioButtons = [
         label: 'Boleto'
     }
 ]
-
 </script>
 
 <style scoped>
-.card {
-    width: 50vw;
-}
 
 .payment-card {
     border: solid 2px #1f855a33;
     border-radius: 5px;
+}
+
+.text-container{
+    width: 80%;
+}
+
+.pix-card {
+    width: 50vw;
 }
 
 .pix-card h1 {
@@ -214,4 +214,16 @@ span {
     font-weight: 900;
     color: #00FF95;
 }
+
+@media (max-width: 1400px) {
+   .pix-card {
+    width: 100%;
+   }
+
+   .text-container{
+    width: 50%;
+   }
+ 
+}
+
 </style>

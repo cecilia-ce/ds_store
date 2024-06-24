@@ -4,7 +4,7 @@
             <v-img width="55" src="/public/images/logo.svg" />
             <h1>Deep Space Store</h1>
         </div>
-        <p>Cancelar</p>
+        <p @click="navigateTo('/')">Cancelar</p>
     </div>
 </template>
 
@@ -18,4 +18,7 @@
     color:#00FF95;
 }
 
+p {
+    cursor: pointer;
+}
 </style>
